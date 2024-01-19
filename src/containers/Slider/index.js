@@ -7,12 +7,16 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
+
+// inversion du chevron pour changer l'ordre d'apparition des slides
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
+
+//  rajout de - 1 a la taille du tableau byDateDesc //
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+      () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
       5000
     );
   };
@@ -40,12 +44,16 @@ const Slider = () => {
           </div>
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
-              {byDateDesc.map((_, radioIdx) => (
+
+              {/* ajout d'une valeur */}
+              {byDateDesc.map((value, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  key={`${value.id}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+
+                  // changement de idx par index
+                  checked={index === radioIdx}
                 />
               ))}
             </div>
