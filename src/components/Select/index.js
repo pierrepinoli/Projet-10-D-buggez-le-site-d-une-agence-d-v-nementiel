@@ -54,10 +54,7 @@ const Select = ({
           type="button"
           data-testid="collapse-button-testid"
           className={collapsed ? "open" : "close"}
-          onClick={(e) => {
-            e.preventDefault();
-            setCollapsed(!collapsed);
-          }}
+          onClick={(e) => {e.preventDefault(); setCollapsed(!collapsed);}}
         >
           <Arrow />
         </button>

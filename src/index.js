@@ -1,6 +1,9 @@
 /* istanbul ignore file */
 import React from "react";
 import ReactDOM from "react-dom/client";
+
+// ajout d'un reset.css 
+import "./reset.scss";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";

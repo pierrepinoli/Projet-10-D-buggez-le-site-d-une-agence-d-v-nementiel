@@ -1,4 +1,4 @@
-// erreur dans le numéro de début des dates : debut à 0
+// erreur dans le numéro de début des dates : début à 0
 
 export const MONTHS = {
   0: "janvier",
