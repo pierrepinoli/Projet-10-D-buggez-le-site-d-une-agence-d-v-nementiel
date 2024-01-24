@@ -26,13 +26,15 @@ const EventList = () => {
     }
     return false;
   });
-
-  const changeType = (evtType) => {
+  
+  const changeType = (selectedType) => {
     setCurrentPage(1);
-    setType(evtType);
+    setType(selectedType);
   };
+
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
+  
   return (
     <>
       {error && <div>An error occured</div>}
@@ -45,6 +47,7 @@ const EventList = () => {
             selection={Array.from(typeList)}
             onChange={(value) => (value ? changeType(value) : changeType(null))}
           />
+
           <div id="events" className="ListContainer">
             {filteredEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
