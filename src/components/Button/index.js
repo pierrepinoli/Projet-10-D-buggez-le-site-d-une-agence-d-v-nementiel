@@ -12,12 +12,13 @@ const Button = ({ title, onClick, type, disabled, children }) => {
     case BUTTON_TYPES.DEFAULT:
       return (
         <button
-          type="button"
-          disabled={disabled}
           className="Button"
           data-testid="button-test-id"
           onClick={onClick}
           title={title}
+          disabled={disabled}
+
+          type="button"
         >
           {children}
         </button>
@@ -25,13 +26,14 @@ const Button = ({ title, onClick, type, disabled, children }) => {
     case BUTTON_TYPES.SUBMIT:
       return (
         <input
-          disabled={disabled}
           className="Button"
-          type="submit"
           data-testid="button-test-id"
-          value={children}
           onClick={onClick}
           title={title}
+          disabled={disabled}
+          
+          type="submit"
+          value={children}
         />
       );
     default:
@@ -54,7 +56,9 @@ const Button = ({ title, onClick, type, disabled, children }) => {
 Button.propTypes = {
   title: PropTypes.string,
   onClick: PropTypes.func,
-  type: PropTypes.number,
+
+  // ajout de oneOf : permet de s'assurer que la propriété type est l'une des valeurs autorisées définies dans l'énumération BUTTON_TYPES.
+  type: PropTypes.oneOf([BUTTON_TYPES.DEFAULT, BUTTON_TYPES.SUBMIT]),
   disabled: PropTypes.bool,
   children: PropTypes.node,
 };

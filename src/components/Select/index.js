@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState } from "react";
+import { useEffect , useState } from "react";
 import PropTypes from "prop-types";
 
 import "./style.scss";
@@ -12,16 +12,27 @@ const Select = ({
   titleEmpty,
   label,
   type = "normal",
+  resetFields
 }) => {
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
-  const changeValue = (newValue) => {
 
-    // rajout de newValue au onChange pour transmettre au parent la nouvelle valeur de selection 
+  useEffect(() => {
+    // Réinitialise la valeur du sélecteur lorsque resetFields change
+    if (resetFields) {
+      setValue("");
+    }
+  }, [resetFields]);
+
+
+
+// rajout de newValue à onChange pour transmettre au composant parent la nouvelle valeur de selection 
+  const changeValue = (newValue) => {
     onChange(newValue);
     setValue(newValue);
     setCollapsed(newValue);
   };
+
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
       {label && <div className="label">{label}</div>}
@@ -56,7 +67,10 @@ const Select = ({
           type="button"
           data-testid="collapse-button-testid"
           className={collapsed ? "open" : "close"}
-          onClick={(e) => {e.preventDefault(); setCollapsed(!collapsed);}}
+          onClick={(e) => {
+            e.preventDefault();
+            setCollapsed(!collapsed);
+          }}
         >
           <Arrow />
         </button>
@@ -87,7 +101,8 @@ Select.propTypes = {
   titleEmpty: PropTypes.bool,
   label: PropTypes.string,
   type: PropTypes.string,
-}
+  resetFields: PropTypes.bool,
+};
 
 Select.defaultProps = {
   onChange: () => null,
@@ -95,6 +110,7 @@ Select.defaultProps = {
   label: "",
   type: "normal",
   name: "select",
-}
+  resetFields: false,
+};
 
 export default Select;
