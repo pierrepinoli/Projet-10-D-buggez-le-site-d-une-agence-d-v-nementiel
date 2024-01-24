@@ -5,8 +5,11 @@ import "./style.scss";
 export const FIELD_TYPES = {
   INPUT_TEXT: 1,
   TEXTAREA: 2,
+  INPUT_EMAIL: 3,
 };
 
+
+// ajout d'un choix d'email dans le switch + ajout d'un required a chaque input et text area
 const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder }) => {
   let component;
   switch (type) {
@@ -17,12 +20,25 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder }) => {
           name={name}
           placeholder={placeholder}
           data-testid="field-testid"
+          required
         />
       );
       break;
     case FIELD_TYPES.TEXTAREA:
-      component = <textarea name={name} data-testid="field-testid" />;
+      component = <textarea name={name} data-testid="field-testid" required/>;
       break;
+    case FIELD_TYPES.INPUT_EMAIL:
+      component = (
+        <input
+          type="email"
+          name={name}
+          placeholder={placeholder}
+          data-testid="field-testid"
+          required
+        />
+      );
+      break;
+
     default:
       component = (
         <input
@@ -30,6 +46,7 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder }) => {
           name={name}
           placeholder={placeholder}
           data-testid="field-testid"
+          required
         />
       );
   }

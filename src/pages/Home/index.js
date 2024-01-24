@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import Menu from "../../containers/Menu";
 import ServiceCard from "../../components/ServiceCard";
 import EventCard from "../../components/EventCard";
@@ -10,10 +11,30 @@ import Logo from "../../components/Logo";
 import Icon from "../../components/Icon";
 import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
+import ModalEvent from "../../containers/ModalEvent";
+
 import { useData } from "../../contexts/DataContext";
 
+
 const Page = () => {
-  const {last} = useData()
+
+  // ajout d'une fonctionnalité qui selectionne que le dernier event
+  const { data } = useData()
+  const [latestEvent, setLatestEvent] = useState(null);
+
+  useEffect(() => {
+    if (data && data.events && data.events.length > 0) {
+      // Trier les événements par date
+      const sortedEvents = data.events.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      // Sélectionner le plus récent (premier élément après le tri)
+      const mostRecentEvent = sortedEvents[0];
+
+      // Mettre à jour l'état avec le plus récent
+      setLatestEvent(mostRecentEvent);
+    }
+  }, [data]);
+    
   return <>
     <header>
       <Menu />
@@ -115,14 +136,26 @@ const Page = () => {
     </main>
     <footer className="row">
       <div className="col presta">
-        <h3>Notre derniére prestation</h3>
-        <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
-          small
-          label="boom"
-        />
+        <h3>Notre dernière prestation</h3>
+
+        {/* ajout d'une modale au dernier evenement */}
+        <Modal 
+               Content={<ModalEvent event={latestEvent} />}>
+              {({ setIsOpened }) => (      
+    
+                <EventCard 
+                  onClick={() => setIsOpened(true)}
+                  latestEvent={latestEvent}
+                  imageSrc={latestEvent?.cover}
+                  title={latestEvent?.title}
+                  date={new Date(latestEvent?.date)}
+                  small
+                  label={latestEvent?.type}
+                />
+
+              )}
+
+        </Modal>
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
