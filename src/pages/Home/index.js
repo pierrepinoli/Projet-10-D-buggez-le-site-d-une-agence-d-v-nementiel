@@ -11,7 +11,6 @@ import Logo from "../../components/Logo";
 import Icon from "../../components/Icon";
 import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
-import ModalEvent from "../../containers/ModalEvent";
 
 import { useData } from "../../contexts/DataContext";
 
@@ -138,24 +137,16 @@ const Page = () => {
       <div className="col presta">
         <h3>Notre dernière prestation</h3>
 
-        {/* ajout d'une modale au dernier evenement */}
-        <Modal 
-               Content={<ModalEvent event={latestEvent} />}>
-              {({ setIsOpened }) => (      
-    
-                <EventCard 
-                  onClick={() => setIsOpened(true)}
-                  latestEvent={latestEvent}
-                  imageSrc={latestEvent?.cover}
-                  title={latestEvent?.title}
-                  date={new Date(latestEvent?.date)}
-                  small
-                  label={latestEvent?.type}
-                />
+        {/* Utilisation de l'opérateur || pour fournir une chaîne vide ("") si la propriété est undefined, évitant ainsi les erreurs de type de propriété manquante. */}
+        <EventCard 
+          imageSrc={latestEvent?.cover || ""}
+          imageAlt="Latest Event"
+          date={new Date(latestEvent?.date)}
+          title={latestEvent?.title || ""}
+          small
+          label={latestEvent?.type || ""}
+        />
 
-              )}
-
-        </Modal>
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>

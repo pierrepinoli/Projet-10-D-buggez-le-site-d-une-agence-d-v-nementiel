@@ -35,7 +35,6 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder, resetF
           data-testid="field-testid"
           value={value}
           onChange={handleChange}
-          required
         />
       );
       break;
@@ -46,7 +45,6 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder, resetF
           data-testid="field-testid"
           value={value}
           onChange={handleChange}
-          required
         />
       );
       break;
@@ -59,7 +57,6 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder, resetF
           data-testid="field-testid"
           value={value}
           onChange={handleChange}
-          required
         />
       );
       break;
@@ -72,7 +69,6 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder, resetF
           data-testid="field-testid"
           value={value}
           onChange={handleChange}
-          required
         />
       );
   }

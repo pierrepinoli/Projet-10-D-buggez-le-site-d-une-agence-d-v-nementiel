@@ -43,9 +43,9 @@ const Form = ({ onSuccess, onError }) => {
           <Field placeholder="" label="Nom" resetFields={shouldResetFields}/>
           <Field placeholder="" label="Prénom" resetFields={shouldResetFields}/>
           <Select
-            selection={["Particulier", "Entreprise"]}
+            selection={["Personel", "Entreprise"]}
             onChange={() => null}
-            label="Particulier / Entreprise"
+            label="Personel / Entreprise"
             type="large"
             titleEmpty
             resetFields={shouldResetFields} // 
