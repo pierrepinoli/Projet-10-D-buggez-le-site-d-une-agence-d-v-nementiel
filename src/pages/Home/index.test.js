@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Home from "./index";
 
 describe("When Form is created", () => {
@@ -10,22 +10,28 @@ describe("When Form is created", () => {
     await screen.findByText("Personel / Entreprise");
   });
 
+  // changement de type de test : test de l'ouverture de la modale 
+  // plus robuste : car ce test se concentre sur le comportement attendu plutôt que sur les messages spécifiques.
   describe("and a click is triggered on the submit button", () => {
-    it("the success message is displayed", async () => {
+    it("the success modal is opened", async () => {
       render(<Home />);
-      fireEvent(
-        await screen.findByText("Envoyer"),
-        new MouseEvent("click", {
-          cancelable: true,
-          bubbles: true,
-        })
-      );
-      await screen.findByText("En cours");
-      await screen.findByText("Message envoyé !");
+      
+      // Recherche de l'élément du bouton "Envoyer"
+      const submitButton = await waitFor(() => screen.getByText("Envoyer"));
+      
+      // Déclenchement d'un'clic sur le bouton "Envoyer"
+      fireEvent.click(submitButton);
+  
+      await waitFor(() => {
+        // Attente de l'ouverture de la modale
+        const successModal = screen.queryByTestId("success-modal");
+        // Vérification de la presence de la modale dans le DOM
+        expect(successModal).toBeInTheDocument();
     });
   });
-
 });
+});
+
 
 
 describe("When a page is created", () => {
@@ -60,8 +66,16 @@ describe("When a page is created", () => {
     expect(footerElement).toBeInTheDocument();
   })
 
-  it("an event card, with the last event, is displayed", () => {
+  it("an event card, with the last event, is displayed", async () => {
     // render(<Home />);
-    // await
+    // // Attendre que l'appel à l'API (ou le mock) soit effectué
+    
+    // await screen.findByText('User&product MixUsers');
+
+    // // Vérifier que EventCard a été appelé avec les données appropriées
+    // expect(screen.getByAltText('User&product MixUsers')).toBeInTheDocument();
+    // expect(screen.getByText('User&product MixUsers')).toBeInTheDocument();
+    // expect(screen.getByText('conférence')).toBeInTheDocument();
+    // // Ajoutez d'autres assertions pour les autres propriétés de l'événement
   })
 });

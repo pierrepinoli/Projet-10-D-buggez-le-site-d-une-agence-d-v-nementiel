@@ -119,8 +119,7 @@ const Page = () => {
       </section>
       <div className="FormContainer" id="contact">
         <h2 className="Title">Contact</h2>
-        <Modal
-          Content={
+        <Modal Content={
             <div className="ModalMessage--success">
 
               {/* changement du type de balise : <div> devient <p> */}

@@ -15,7 +15,7 @@ const Modal = ({ opened, Content, children }) => {
     <>
       {children({ isOpened, setIsOpened })}
       {isOpened && (
-        <div className="modal">
+        <div data-testid="success-modal" className="modal">
           <div className="content">
             {Content}
             <button
