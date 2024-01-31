@@ -83,31 +83,37 @@ const Page = () => {
             imageSrc="/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"
             name="Samira"
             position="CEO"
+            imageAlt="photo de profil de Samira"
           />
           <PeopleCard
             imageSrc="/images/linkedin-sales-solutions-pAtA8xe_iVM-unsplash.png"
             name="Jean-baptiste"
             position="Directeur marketing"
+            imageAlt="photo de profil de Jean-baptiste"
           />
           <PeopleCard
             imageSrc="/images/christina-wocintechchat-com-SJvDxw0azqw-unsplash.png"
             name="Alice"
             position="CXO"
+            imageAlt="photo de profil d'Alice"
           />
           <PeopleCard
             imageSrc="/images/jonas-kakaroto-KIPqvvTOC1s-unsplash.png"
             name="Luís"
             position="Animateur"
+            imageAlt="photo de profil de Luís"
           />
           <PeopleCard
             imageSrc="/images/amy-hirschi-b3AYk8HKCl0-unsplash1.png"
             name="Christine"
             position="VP animation"
+            imageAlt="photo de profil de Christine"
           />
           <PeopleCard
             imageSrc="/images/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash.png"
             name="Isabelle"
             position="VP communication"
+            imageAlt="photo de profil de'Isabelle"
           />
         </div>
       </section>
@@ -116,7 +122,9 @@ const Page = () => {
         <Modal
           Content={
             <div className="ModalMessage--success">
-              <div>Message envoyé !</div>
+
+              {/* changement du type de balise : <div> devient <p> */}
+              <p>Message envoyé !</p>
               <p>
                 Merci pour votre message nous tâcherons de vous répondre dans
                 les plus brefs délais
