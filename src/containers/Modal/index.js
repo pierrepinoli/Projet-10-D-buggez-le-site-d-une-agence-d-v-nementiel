@@ -7,7 +7,7 @@ const Modal = ({ opened, Content, children }) => {
   const [isOpened, setIsOpened] = useState(opened);
 
   useEffect(() => {
-    // Mettre à jour le state interne si la propriété 'opened' change
+    // Met à jour le state interne si la propriété 'opened' change
     setIsOpened(opened);
   }, [opened]);
 
