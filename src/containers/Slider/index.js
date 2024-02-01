@@ -49,7 +49,7 @@ const Slider = () => {
             type="radio"
             name="radio-button"
             checked={index === radioIdx}
-            // onChange={() => setIndex(radioIdx)} // Ajout de l'événement onChange pour gérer la sélection
+            readOnly
           />
         ))}
       </div>
