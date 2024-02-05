@@ -27,13 +27,7 @@ describe("When Form is created", () => {
       }, 1500);
     });
   });
-
 });
-
-
-
-
-
 
 
 
@@ -60,8 +54,6 @@ describe("When a page is created", () => {
     await screen.findByAltText("photo de profil de Luís");
     })
   
-
-
   it("a footer is displayed", () => {
     render(<Home />);
 
@@ -73,9 +65,10 @@ describe("When a page is created", () => {
 
   })
 
-
   it("an event card, with the last event, is displayed", () => {
     render(<Home />);
+
+    // vérifie la présence du texte : Notre dernière prestation 
     expect(screen.getByText('Notre dernière prestation')).toBeInTheDocument();
   })
 });
