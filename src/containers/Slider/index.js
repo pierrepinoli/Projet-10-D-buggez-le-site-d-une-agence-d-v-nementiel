@@ -14,17 +14,19 @@ const Slider = () => {
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
 
-  // Rajout de -1 à la taille du tableau byDateDesc
   const nextCard = () => {
-    
-    // ajout d'une vérification byDateDesc && avant de tenter d'accéder à la propriété 'length', ce qui évitera l'erreur si byDateDesc est undefined
-    setTimeout(() => setIndex((prevIndex) => (byDateDesc && prevIndex < byDateDesc.length - 1 ? prevIndex + 1 : 0)), 5000);
+    // Rajout de -1 à la taille du tableau byDateDesc
+    // ajout d'une vérification byDateDesc && avant de tenter d'accéder à la propriété 'length', 
+    // ce qui évitera l'erreur si byDateDesc est undefined
+    setTimeout(() => setIndex((prevIndex) => 
+      (byDateDesc && prevIndex < byDateDesc.length - 1 ? prevIndex + 1 : 0)), 5000);
   };
 
   useEffect(() => {
     nextCard();
-  }, [index, byDateDesc]);  // Ajout de [index, byDateDesc] comme dépendances pour éviter des erreurs dans les règles ESLint
-
+    // Ajout de [index, byDateDesc] comme dépendances pour éviter des erreurs dans les règles ESLint
+  }, [index, byDateDesc]);  
+  
   return (
     <div className="SlideCardList">
     {byDateDesc?.map((event, idx) => (

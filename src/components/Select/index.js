@@ -25,12 +25,13 @@ const Select = ({
   }, [resetFields]);
 
 
-
-// rajout de newValue à onChange pour transmettre au composant parent la nouvelle valeur de selection 
   const changeValue = (newValue) => {
+    // ajout de newValue à onChange pour transmettre 
+    // au composant parent la nouvelle valeur de selection 
     onChange(newValue);
     setValue(newValue);
-    setCollapsed(newValue);
+    // ajout de !collapsed pour fermer automatiquement le selecteur
+    setCollapsed(!collapsed);
   };
 
   return (
