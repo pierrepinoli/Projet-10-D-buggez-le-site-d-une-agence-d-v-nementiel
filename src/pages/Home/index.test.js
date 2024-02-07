@@ -30,44 +30,37 @@ describe("When Form is created", () => {
 });
 
 
-
 describe("When a page is created", () => {
   it("a list of events is displayed", () => {
     render(<Home />);
-  
-    // Utilise une requête pour rechercher un élément spécifique du composant enfant à l'intérieur du composant parent i.e : l'id events 
+    // Utilise une requête pour rechercher un élément spécifique du composant enfant 
+    // à l'intérieur du composant parent i.e : l'id events 
     const childElement = screen.getByTestId("events-testid");
-
      // Assert pour vérifier la présence du composant enfant
     expect(childElement).toBeInTheDocument();
-
   })
 
   it("a list a people is displayed", async () => {
     render(<Home />);
-
     // verifie la presence d'un nom et d'une fonction
     await screen.findByText("Samira");
     await screen.findByText("Directeur marketing");
-
-    // verifie la presence d'un texte alternatif afin de verifier la presence d'une image
+    // verifie la présence d'un texte alternatif 
+    // afin de vérifier la présence d'une image
     await screen.findByAltText("photo de profil de Luís");
     })
   
   it("a footer is displayed", () => {
     render(<Home />);
-
-    // Utilise la requête getByRole avec 'contentinfo' pour trouver l'élément de pied de page
+    // Utilise la requête getByRole avec 'contentinfo' 
+    // pour trouver l'élément de pied de page
     const footerElement = screen.getByRole('contentinfo');
-
     // Assert pour vérifier la présence de l'élément de pied de page
     expect(footerElement).toBeInTheDocument();
-
   })
 
   it("an event card, with the last event, is displayed", () => {
     render(<Home />);
-
     // vérifie la présence du texte : Notre dernière prestation 
     expect(screen.getByText('Notre dernière prestation')).toBeInTheDocument();
   })

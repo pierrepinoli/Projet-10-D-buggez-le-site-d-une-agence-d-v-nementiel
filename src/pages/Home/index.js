@@ -16,20 +16,16 @@ import { useData } from "../../contexts/DataContext";
 
 
 const Page = () => {
-
   // ajout d'une fonctionnalité qui selectionne que le dernier event
   const { data } = useData()
   const [latestEvent, setLatestEvent] = useState(null);
-
   useEffect(() => {
     if (data && data.events && data.events.length > 0) {
-      // Trier les événements par date
+      // Trie les événements par date
       const sortedEvents = data.events.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-      // Sélectionner le plus récent (premier élément après le tri)
+      // Sélectionne le plus récent (premier élément après le tri)
       const mostRecentEvent = sortedEvents[0];
-
-      // Mettre à jour l'état avec le plus récent
+      // Met à jour l'état avec le plus récent
       setLatestEvent(mostRecentEvent);
     }
   }, [data]);
@@ -144,7 +140,9 @@ const Page = () => {
       <div className="col presta">
         <h3>Notre dernière prestation</h3>
 
-        {/* Utilisation de l'opérateur || pour fournir une chaîne vide ("") si la propriété est undefined, évitant ainsi les erreurs de type de propriété manquante. */}
+        {/* Utilisation de l'opérateur || pour fournir une chaîne vide ("") 
+        si la propriété est undefined, 
+        évitant ainsi les erreurs de type de propriété manquante. */}
         <EventCard 
           imageSrc={latestEvent?.cover || ""}
           imageAlt="Latest Event"

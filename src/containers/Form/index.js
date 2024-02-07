@@ -9,23 +9,18 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 1000
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
 
-  // defini l'etat de reset des champs etat faux par defaut
+  // defini l'etat de reset des champs à "faux" par defaut
   const [shouldResetFields, setShouldResetFields] = useState(false);
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
       setSending(true);
-      
       // We try to call mockContactApi
       try {
         await mockContactApi();
         setSending(false);
-
-
         // Déclenche la réinitialisation des champs
         setShouldResetFields(true);
-
-
         // Appel onSuccess lorsque l'envoi est réussi
         onSuccess();
       } catch (err) {
